@@ -10,9 +10,9 @@ RUN apk add bash
 RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Install aws-cli
-RUN apk -Uuv add groff less python py-pip
-RUN pip install awscli
+RUN apk --no-cache add python py-pip py-setuptools ca-certificates groff less
+RUN pip --no-cache-dir install awscli
 RUN apk --purge -v del py-pip
-RUN rm /var/cache/apk/*
+RUN rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]
